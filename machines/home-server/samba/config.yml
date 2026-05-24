@@ -1,0 +1,45 @@
+global:
+# Allow Samba to listen on all interfaces, including Tailscale's virtual
+# network interface.
+- "bind interfaces only = no"
+# Allow localhost and the full Tailscale CGNAT range (100.64.0.0/10).
+# Without this, Samba denies connections from Tailscale IPs by default.
+- "hosts allow = 127.0.0.0/8 100.64.0.0/10"
+# Use SMB2 and SMB3, which are more secure than the older SMB1 protocol.
+- "server min protocol = SMB2"
+- "server max protocol = SMB3"
+
+auth:
+- user: luca
+  group: users
+  uid: 1000
+  gid: 1000
+  password_file: /data/pwd/luca.password
+
+- user: serena
+  group: users
+  uid: 1001
+  gid: 1001
+  password_file: /data/pwd/serena.password
+
+share:
+- name: common
+  path: /share/common
+  browsable: yes
+  readonly: no
+  guestok: no
+  validusers: luca,serena
+
+- name: luca
+  path: /share/luca
+  browsable: yes
+  readonly: no
+  guestok: no
+  validusers: luca
+
+- name: serena
+  path: /share/serena
+  browsable: yes
+  readonly: no
+  guestok: no
+  validusers: serena

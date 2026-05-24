@@ -1,0 +1,92 @@
+services:
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    restart: unless-stopped
+    ports:
+    - "80:80"
+    - "443:443"
+    - "8123:8123"
+    volumes:
+    - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+    - ./caddy/site:/srv/site:ro
+    - /var/run/tailscale/tailscaled.sock:/var/run/tailscale/tailscaled.sock
+    - caddy_data:/data
+
+  samba:
+    image: crazymax/samba
+    container_name: samba
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+    - ./samba/config.yml:/data/config.yml:ro
+    - ./samba/pwd:/data/pwd:ro
+    - ${DATA_NAS}:/share
+
+    # Password control:
+    - ./samba/pwd/luca.password:/share/luca/.pwd:rw
+    - ./samba/pwd/serena.password:/share/serena/.pwd:rw
+    - ./samba/user.README.md:/share/luca/README.md:ro
+    - ./samba/user.README.md:/share/serena/README.md:ro
+
+  gitolite:
+    build: ./gitolite
+    container_name: gitolite
+    restart: unless-stopped
+    ports:
+    - "2222:22"
+    environment:
+      # User to add when initializing gitolite
+      # (first time only, ignored on subsequent runs)
+      SSH_KEY: ${GITOLITE_ADMIN_PUBKEY}
+      SSH_KEY_NAME: luca
+    volumes:
+    - ${DATA_REPOS}:/var/lib/git
+    # Persist SSH host keys so the fingerprint doesn't change on restart
+    - gitolite_ssh_keys:/etc/ssh/keys
+
+  restic:
+    image: restic/rest-server:latest
+    container_name: restic
+    restart: unless-stopped
+    ports:
+    - "8000:8000"
+    environment:
+    - OPTIONS=--no-auth
+    volumes:
+    - ${DATA_RESTIC}:/data
+
+  glances:
+    image: nicolargo/glances:latest-full
+    container_name: glances
+    restart: unless-stopped
+    pid: host
+    ports:
+    - "61208:61208"
+    environment:
+    - GLANCES_OPT=-w
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock:ro
+    - /sys/class/thermal:/sys/class/thermal:ro
+    # Fake mount to make glances show some disk usage (since it can't see the host disks)
+    - ${SSD}/glances-stat-dummy-mount:/media/rpi-data:ro
+
+  power-control:
+    build: ./power-control
+    container_name: power-control
+    restart: unless-stopped
+    pid: host
+    privileged: true
+
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    restart: unless-stopped
+    environment:
+    - DOMAIN=${VAULTWARDEN_DOMAIN}
+    volumes:
+    - ${DATA_VAULTWARDEN}:/data
+
+volumes:
+  gitolite_ssh_keys:
+  caddy_data:

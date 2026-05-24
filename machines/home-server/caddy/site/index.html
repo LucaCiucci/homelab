@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>raspberrypi</title>
+</head>
+<body>
+    <h1><code>raspberrypi</code></h1>
+
+    Quick Links:
+    <ul>
+        <li><a href="https://raspberrypi.tailbcafe5.ts.net/">HTTPS Home</a></li>
+        <li><a href="http://raspberrypi:61208/">Glances</a> (System monitoring)</li>
+        <li><a href="https://raspberrypi.tailbcafe5.ts.net:8123/">Vaultwarden</a> (Password manager)</li>
+    </ul>
+
+    <h2>Samba (NAS)</h2>
+    <ul>
+        <li>Linux: <code>smb://raspberrypi</code></li>
+        <li>Windows: <code>\\raspberrypi</code></li>
+    </ul>
+
+    <h2>Gitolite (Git server)</h2>
+    <ul>
+        <li>SSH: <code>ssh://git@raspberrypi:2222</code></li>
+        <li>List repos: <code>ssh git@raspberrypi -p 2222 info</code></li>
+        <li>Clone: <code>git clone ssh://git@raspberrypi:2222/repo-name.git</code></li>
+    </ul>
+
+    <h2>Restic (Backup)</h2>
+    TBW
+
+    <h2>Power</h2>
+    <button onclick="powerAction('restart')">Restart</button>
+    <button onclick="powerAction('shutdown')">Shutdown</button>
+    <script>
+        function powerAction(action) {
+            if (!confirm('Are you sure you want to ' + action + ' the Raspberry Pi?')) return;
+            fetch('/power/' + action, { method: 'POST' })
+                .then(r => r.json())
+                .then(d => alert('Done: ' + d.status))
+                .catch(() => alert('Request sent (Pi may be going down).'));
+        }
+    </script>
+
+</body>
+</html>
