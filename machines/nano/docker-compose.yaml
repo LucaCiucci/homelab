@@ -1,0 +1,43 @@
+services:
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    restart: unless-stopped
+    ports:
+    - "80:80"
+    - "443:443"
+    - "8123:8123"
+    volumes:
+    # Caddy's data directory
+    # IMPORTANT: This is where Caddy stores its TLS certificates and other data.
+    # We have to persist this volume to ensure that we don't lose our
+    # certificates when the container is recreated!
+    - caddy_data:/data
+    # Caddy's configuration file
+    - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+
+    # e-birb website (deployed via GitHub Actions)
+    - ./caddy/index.html:/srv/www/html/index.html:ro
+    - e-birb-website:/srv/e-birb:ro
+    - e-birb-website-staging:/srv/e-birb-staging:ro
+
+  # A simple SSH server that we can use to receive files from GitHub Actions via SCP.
+  #
+  # This is a very basic implementation that only allows a single user (deploy)
+  # with a public key for authentication.
+  ssh-receiver:
+    build: ./ssh-receiver
+    container_name: ssh-receiver
+    restart: unless-stopped
+    ports:
+    - "2222:2222"
+    environment:
+      SSH_PUBLIC_KEY: ${SSH_DEPLOY_PUBKEY}
+    volumes:
+    - e-birb-website:/srv/e-birb-website
+    - e-birb-website-staging:/srv/e-birb-website-staging
+
+volumes:
+  caddy_data:
+  e-birb-website:
+  e-birb-website-staging:

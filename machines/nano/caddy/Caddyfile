@@ -1,0 +1,51 @@
+# The Caddyfile is an easy way to configure your Caddy web server.
+#
+# Unless the file starts with a global options block, the first
+# uncommented line is always the address of your site.
+#
+# To use your own domain name (with automatic HTTPS), first make
+# sure your domain's A/AAAA DNS records are properly pointed to
+# this machine's public IP, then replace ":80" below with your
+# domain name.
+
+#:80 {
+#	# Set this path to your site's directory.
+#	#root * /usr/share/caddy
+#	root * /var/www/deadbeef
+#
+#	# Enable the static file server.
+#	file_server
+#
+#	# Another common task is to set up a reverse proxy:
+#	# reverse_proxy localhost:8080
+#
+#	# Or serve a PHP site through php-fpm:
+#	# php_fastcgi localhost:9000
+#}
+
+#63c10ed1-16a3-4c66-b2ce-a1c8c1e7a506.lucaciucci99.com, z-workbench.bugseng.com {
+#	root * /var/www/deadbeef
+#	file_server
+#}
+
+#c-rusted-rs-demo.lucaciucci99.com {
+#	reverse_proxy 127.0.0.1:8080
+#}
+
+nano.lucaciucci99.com {
+	root * /srv/www/html
+	file_server
+}
+
+e-birb.com {
+	root * /srv/e-birb
+	file_server
+}
+
+staging.e-birb.com {
+	root * /srv/e-birb-staging
+	file_server
+}
+
+# Refer to the Caddy docs for more information:
+# https://caddyserver.com/docs/caddyfile
