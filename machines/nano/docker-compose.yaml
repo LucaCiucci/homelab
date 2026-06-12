@@ -21,6 +21,9 @@ services:
     - e-birb-website:/srv/e-birb:ro
     - e-birb-website-staging:/srv/e-birb-staging:ro
 
+    # Temporary website
+    - /srv/www/tmp-test.lucaciucci99.com:/srv/www/tmp-test.lucaciucci99.com:ro
+
   # A simple SSH server that we can use to receive files from GitHub Actions via SCP.
   #
   # This is a very basic implementation that only allows a single user (deploy)

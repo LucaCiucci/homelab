@@ -37,6 +37,11 @@ nano.lucaciucci99.com {
 	file_server
 }
 
+tmp-test.lucaciucci99.com {
+	root * /srv/www/tmp-test.lucaciucci99.com
+	file_server
+}
+
 e-birb.com {
 	root * /srv/e-birb
 	file_server
