@@ -40,6 +40,12 @@ nano.lucaciucci99.com {
 tmp-test.lucaciucci99.com {
 	root * /srv/www/tmp-test.lucaciucci99.com
 	file_server
+	header {
+		X-Robots-Tag "noindex, nofollow, noarchive"
+	}
+	basicauth {
+		luca $2a$14$OSY5Udn2OoTpOlds1gxTEOGMx7SeibXs9resTysnHB3Enpip9NhMm
+	}
 }
 
 e-birb.com {
