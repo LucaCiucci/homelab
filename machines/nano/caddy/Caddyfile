@@ -40,6 +40,10 @@ nano.lucaciucci99.com {
 data.lucaciucci99.com {
 	root * /srv/www/data
 	file_server
+
+	header {
+		Access-Control-Allow-Origin *
+	}
 }
 
 tmp-test.lucaciucci99.com {
