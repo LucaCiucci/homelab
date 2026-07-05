@@ -14,9 +14,8 @@ mx                       3600 A   62.149.128.166
 mx                       3600 A   62.149.128.163
 mx                       3600 A   62.149.128.157
 mx                       3600 A   62.149.128.160
-www                      3600 CNAME  lucaciucci.github.io.
-old                      3600 AAAA   2a00:6d40:4:1::c281:66
-old                      3600 A   89.46.108.66
+www                       3600 AAAA   2a00:6d40:4:1::c281:66
+www                       3600 A   89.46.108.66
 localhost                       3600 A   127.0.0.1
 stat                       3600 CNAME   redirectstat.aruba.it.
 sms                       3600 CNAME   admin.sms.aruba.it.
@@ -53,6 +52,7 @@ pop3                       3600 A   62.149.128.164
 pop3                       3600 A   62.149.128.161
 pop3                       3600 A   62.149.128.158
 pop3                       3600 A   62.149.128.155
+@                       3600 AAAA   2a00:6d40:4:1::c281:66
 @                       3600 TXT   "v=spf1 include:aruba.it ~all"
 @                       3600 TXT   "google-site-verification=bPULQoSnL7grNA0EMIPcSjU2jAZOt8XBcxzmC_aCSfA"
 @                       3600 MX   10 mx.lucaciucci99.com.
@@ -60,14 +60,7 @@ pop3                       3600 A   62.149.128.155
 @                       3600 NS   dns3.arubadns.net.
 @                       3600 NS   dns2.technorail.com.
 @                       3600 NS   dns.technorail.com.
-@                         3600 A      185.199.108.153
-@                         3600 A      185.199.109.153
-@                         3600 A      185.199.110.153
-@                         3600 A      185.199.111.153
-@                         3600 AAAA   2606:50c0:8000::153
-@                         3600 AAAA   2606:50c0:8001::153
-@                         3600 AAAA   2606:50c0:8002::153
-@                         3600 AAAA   2606:50c0:8003::153
+@                       3600 A   89.46.108.66
 c-rusted-rs-demo                       3600 A   89.46.70.21
 tmp-test                       3600 A   89.46.70.21
 data                       3600 A   89.46.70.21
