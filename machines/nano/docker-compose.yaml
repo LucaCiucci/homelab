@@ -66,7 +66,7 @@ services:
       POSTGRES_USER: ${UMAMI_DB_USER:-umami}
       POSTGRES_PASSWORD: ${UMAMI_DB_PASSWORD}
     volumes:
-      - umami-db-data:/var/lib/postgresql/data
+    - umami-db-data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${UMAMI_DB_USER:-umami} -d ${UMAMI_DB_NAME:-umami}"]
       interval: 5s

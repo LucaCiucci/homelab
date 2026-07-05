@@ -1,0 +1,61 @@
+Name	Content	Ttl	Type
+mx.lucaciucci99.com.	62.149.128.154	3600	A
+mx.lucaciucci99.com.	62.149.128.151	3600	A
+mx.lucaciucci99.com.	62.149.128.74	3600	A
+mx.lucaciucci99.com.	62.149.128.72	3600	A
+mx.lucaciucci99.com.	62.149.128.166	3600	A
+mx.lucaciucci99.com.	62.149.128.163	3600	A
+mx.lucaciucci99.com.	62.149.128.157	3600	A
+mx.lucaciucci99.com.	62.149.128.160	3600	A
+www.lucaciucci99.com.	2a00:6d40:4:1::c281:66	3600	AAAA
+www.lucaciucci99.com.	89.46.108.66	3600	A
+localhost.lucaciucci99.com.	127.0.0.1	3600	A
+stat.lucaciucci99.com.	redirectstat.aruba.it.	3600	CNAME
+sms.lucaciucci99.com.	admin.sms.aruba.it.	3600	CNAME
+smtp.lucaciucci99.com.	62.149.128.201	3600	A
+smtp.lucaciucci99.com.	62.149.128.200	3600	A
+smtp.lucaciucci99.com.	62.149.128.202	3600	A
+smtp.lucaciucci99.com.	62.149.128.203	3600	A
+ftp.lucaciucci99.com.	89.46.104.211	3600	A
+_xmpp-client._tcp.lucaciucci99.com.	5 0 5222 imchat1.aruba.it.	3600	SRV
+_xmpp-server._tcp.lucaciucci99.com.	5 0 5269 imchat1.aruba.it.	3600	SRV
+_autodiscover._tcp.lucaciucci99.com.	0 0 443 autodiscover.aruba.it.	3600	SRV
+imap.lucaciucci99.com.	imaps.aruba.it.	3600	CNAME
+git.nano.lucaciucci99.com.	89.46.70.21	3600	A
+nano.lucaciucci99.com.	89.46.70.21	3600	A
+admin.lucaciucci99.com.	admin.redirect.aruba.it.	3600	CNAME
+webmail.lucaciucci99.com.	62.149.158.91	3600	A
+webmail.lucaciucci99.com.	62.149.158.92	3600	A
+mail.lucaciucci99.com.	62.149.128.157	3600	A
+mail.lucaciucci99.com.	62.149.128.154	3600	A
+mail.lucaciucci99.com.	62.149.128.72	3600	A
+mail.lucaciucci99.com.	62.149.128.74	3600	A
+mail.lucaciucci99.com.	62.149.128.166	3600	A
+mail.lucaciucci99.com.	62.149.128.151	3600	A
+mail.lucaciucci99.com.	62.149.128.163	3600	A
+mail.lucaciucci99.com.	62.149.128.160	3600	A
+autoconfig.lucaciucci99.com.	autodiscover.aruba.it.	3600	CNAME
+statistiche.lucaciucci99.com.	redirectstat.aruba.it.	3600	CNAME
+_dmarc.lucaciucci99.com.	"""v=DMARC1; p=none; adkim=r; aspf=r;"""	3600	TXT
+pop3.lucaciucci99.com.	62.149.128.167	3600	A
+pop3.lucaciucci99.com.	62.149.128.73	3600	A
+pop3.lucaciucci99.com.	62.149.128.75	3600	A
+pop3.lucaciucci99.com.	62.149.128.152	3600	A
+pop3.lucaciucci99.com.	62.149.128.164	3600	A
+pop3.lucaciucci99.com.	62.149.128.161	3600	A
+pop3.lucaciucci99.com.	62.149.128.158	3600	A
+pop3.lucaciucci99.com.	62.149.128.155	3600	A
+@	2a00:6d40:4:1::c281:66	3600	AAAA
+@	"""v=spf1 include:aruba.it ~all"""	3600	TXT
+@	"""google-site-verification=bPULQoSnL7grNA0EMIPcSjU2jAZOt8XBcxzmC_aCSfA"""	3600	TXT
+@	10 mx.lucaciucci99.com.	3600	MX
+@	dns.technorail.com. hostmaster.lucaciucci99.com. 2026030402 86400 7200 2592000 3600	3600	SOA
+@	dns4.arubadns.cz.	3600	NS
+@	dns3.arubadns.net.	3600	NS
+@	dns2.technorail.com.	3600	NS
+@	dns.technorail.com.	3600	NS
+@	89.46.108.66	3600	A
+c-rusted-rs-demo.lucaciucci99.com.	89.46.70.21	3600	A
+tmp-test.lucaciucci99.com.	89.46.70.21	3600	A
+data.lucaciucci99.com.	89.46.70.21	3600	A
+umami.lucaciucci99.com.	89.46.70.21	3600	A
