@@ -43,7 +43,38 @@ services:
     - e-birb-website:/srv/e-birb-website
     - e-birb-website-staging:/srv/e-birb-website-staging
 
+  # Umami (web analytics)
+  umami:
+    image: docker.umami.is/umami-software/umami:postgresql-latest
+    container_name: umami
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://${UMAMI_DB_USER}:${UMAMI_DB_PASSWORD}@db-umami:5432/${UMAMI_DB_NAME}
+      DATABASE_TYPE: postgresql
+      APP_SECRET: ${UMAMI_APP_SECRET}
+      DISABLE_TELEMETRY: 1
+    depends_on:
+      db-umami:
+        condition: service_healthy
+
+  db-umami:
+    image: postgres:16-alpine
+    container_name: db-umami
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${UMAMI_DB_NAME:-umami}
+      POSTGRES_USER: ${UMAMI_DB_USER:-umami}
+      POSTGRES_PASSWORD: ${UMAMI_DB_PASSWORD}
+    volumes:
+      - umami-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${UMAMI_DB_USER:-umami} -d ${UMAMI_DB_NAME:-umami}"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
 volumes:
   caddy_data:
   e-birb-website:
   e-birb-website-staging:
+  umami-db-data:

@@ -57,6 +57,10 @@ tmp-test.lucaciucci99.com {
 	}
 }
 
+umami.lucaciucci99.com {
+	reverse_proxy umami:3000
+}
+
 e-birb.com {
 	root * /srv/e-birb
 	file_server
