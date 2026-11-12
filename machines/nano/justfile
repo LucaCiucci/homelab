@@ -1,0 +1,18 @@
+
+[private]
+default:
+    @just --list
+    @exit 1
+
+up:
+    docker compose up -d
+
+down:
+    docker compose down
+
+logs:
+    docker compose logs -f
+
+update-all:
+    docker compose pull
+    @just up
